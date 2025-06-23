@@ -1,38 +1,41 @@
-document.getElementById("btn1").addEventListener("click",()=>{
-    let body = document.querySelector("body"); 
-    fetch("https://hp-api.onrender.com/api/characters")
-    .then(response => response.json())
-    .then((response)=>{
-        for(let i = 0; i < 10 ; i++ ){
+const url = "https://hp-api.onrender.com/api/characters";
+const input = document.getElementById("inputNombre ");
+const filtroCasa = document.getElementById("filtroCasa");
+const boton = document.getElementById("btnBuscar");
+const resultado = document.getElementById("resultado");
+const imgPorDefecto = "https://via.placeholder.com/100x150?text=Sin+imagen";
 
-            let personaje = response[i];
-            let nuevoElemento = document.createElement("div");
-            let nombre = document.createElement("h2");
-            let casa =  document.createElement("h3");
-            let img =  document.createElement("img");
+function mostrarResultados(personaje) {
+  let nombre = "";
+}
 
-            nombre.textContent = response[i].name;
-            casa.textContent = response[i].house;
-            img.src = personaje.image;
+function buscarPersonaje() {
+  const nombreBuscado = input.value.tolowerCase().trim();
+  const casaSeleccionada = filtroCasa.value;
 
-            body.appendChild(nuevoElemento);
-            nuevoElemento.appendChild(casa);
-            nuevoElemento.appendChild(nombre); 
-            nuevoElemento.appendChild(img); 
-            
-            
+  fetch(url)
+    .then(res.json())
+    .then((data) => {
+      let filtrados = data.filter((p) =>
+        p.name.tolowerCase().includes(nombreBuscado)
+      );
 
+      if (casaSeleccionada !== "") {
+        filtrados = filtrados.filter((p) => p.house === casaSeleccionada);
+      }
 
-
-
-
-
-
-
-
-        }
-
-
+      filtrados.sort((a, b) => a.name.localeCompare(b.name));
+      mostrarResultados(filtrados);
     })
-    .catch(error => console.error(error))
+    .catch((error) => {
+      resultado.innerHTML = "<p>Error al obtener datos.</p> ";
+      console.error(error);
+    });
+}
+
+boton.addEventListener("click", buscarPersonaje);
+input.addEventListener("keypress", function (e) {
+  if (e.key === "Enter") {
+    buscarPersonaje();
+  }
 });

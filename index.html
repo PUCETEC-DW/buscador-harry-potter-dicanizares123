@@ -1,15 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>API HP</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-    <h1>Characters Harry Potter</h1>
-    <input type="text" placeholder="Escribe...">
-    <button id="btn1">Esto es un botom</button>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Buscador Harry Potter</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="buscador">
+      <input type="text" id="inputNombre" placeholder="Buscador..." />
+      <select id="filtroCasa">
+        <option value="">Todas las casas</option>
+        <option value="Gryffindor">Gryffindor</option>
+        <option value="Slytherin">Slytherin</option>
+        <option value="Ravenclaw">Ravenclaw</option>
+        <option value="Hufflepuff">Hufflepuff</option>
+      </select>
+      <button id="btnBuscar">Buscar</button>
+    </div>
+    <div id="resultado" class="contenedor">
+      <p>
+        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Fugit eum
+        quae, veniam cupiditate veritatis quaerat laborum expedita explicabo
+        laudantium facilis, dignissimos, adipisci exercitationem mollitia ullam
+        earum nulla. Quam, maxime esse.
+      </p>
+    </div>
     <script src="script.js"></script>
-</body>
+  </body>
 </html>
